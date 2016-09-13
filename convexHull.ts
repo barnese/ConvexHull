@@ -1,35 +1,23 @@
 /// <reference path="jquery.d.ts" />
 /// <reference path="raphael.d.ts" />
-
-class Point {
-    x: number;
-    y: number;
-
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-    }
-
-    describe() {
-        return this.x.toString() + ", " + this.y.toString();
-    } 
-}
+/// <reference path="helpers.ts" />
 
 class ConvexHull {
     private points: Point[];
-    private canvas;
-    private canvasOrigin: Point;
-    private canvasSize: Point;
+    private paper;
+    private paperRect: Rect;
 
     private canvasCircleSize: number = 2;
     private canvasCircleColor: string = "#000";
 
-    constructor(canvasOriginX: number, canvasOriginY: number, canvasWidth: number, canvasHeight: number) {
+    constructor(paperRect: Rect) {
         this.points = [];
-        this.canvasOrigin = new Point(canvasOriginX, canvasOriginY);
-        this.canvasSize = new Point(canvasWidth, canvasHeight);
+        this.paperRect = paperRect;
 
-        this.canvas = Raphael(canvasOriginX, canvasOriginY, canvasWidth, canvasHeight);        
+        this.paper = Raphael(paperRect.x, paperRect.y, paperRect.width, paperRect.height);
+
+        var paperOutline = this.paper.rect(0, 0, paperRect.width, paperRect.height);
+        paperOutline.attr("stroke", "#aaa");
     }
 
     /**
@@ -45,8 +33,8 @@ class ConvexHull {
      */
     createRandomPoints(count: number) {
         for (var i = 0; i < count; i++) {
-            var x = Math.floor(Math.random() * this.canvasSize.x);
-            var y = Math.floor(Math.random() * this.canvasSize.y);
+            var x = Math.floor(Math.random() * this.paperRect.width);
+            var y = Math.floor(Math.random() * this.paperRect.height);
             this.addPoint(x, y);
         }
     }
@@ -56,7 +44,7 @@ class ConvexHull {
      */
     drawPoints() {
         for (var point of this.points) {
-            var circle = this.canvas.circle(point.x, point.y, this.canvasCircleSize);
+            var circle = this.paper.circle(point.x, point.y, this.canvasCircleSize);
             circle.attr("fill", this.canvasCircleColor);
             circle.attr("stroke", this.canvasCircleColor);
         }
@@ -73,7 +61,8 @@ class ConvexHull {
 }
 
 $(document).ready(function() {
-    var convexHull = new ConvexHull(0, 0, $(document).width(), $(document).height());
+    var windowSize = new Rect(10, 10, $(document).width() - 20, $(document).height() - 20);
+    var convexHull = new ConvexHull(windowSize);
     convexHull.createRandomPoints(50);
     convexHull.drawPoints();
 });
