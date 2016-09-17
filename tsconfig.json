@@ -1,0 +1,11 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system",
+        "sourceMap": true,
+        "sourceRoot": "../source",
+        "outFile": "dist/convexHull.js",
+        "watch": true
+    }
+}
