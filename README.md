@@ -4,7 +4,7 @@ Draws the convex hull for a set of randomly generated points.
 The scripts are written in TypeScript and the graphics are rendered using the Raphaël Javascript Library.
 
 Currently only the "Quick Hull" algorithm has been implemented. 
-There is a `ConvexHullInterface` defined which will allow easily plugging in order algorithms later. 
+There is a `ConvexHullInterface` defined which will allow easily plugging in other algorithms later. 
 
 ## How to Run
 
