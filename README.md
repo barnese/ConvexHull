@@ -14,6 +14,4 @@ Alternatively, run the provided Node.js server.
 
 ```node server.js```
 
-And then navigate to 
-
-```localhost:5858```
+And then navigate to localhost at port 5858.
