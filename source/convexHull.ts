@@ -1,4 +1,3 @@
-/// <reference path="declarations/jquery.d.ts" />
 /// <reference path="declarations/raphael.d.ts" />
 /// <reference path="quickHull.ts" />
 
@@ -107,14 +106,3 @@ class ConvexHull {
         text.attr("fill", this.pointColor);
     }
 }
-
-/**
- * Main entry point.
- */
-$(document).ready(function() {
-    var windowSize = new Rect(10, 10, $(document).width() - 20, $(document).height() - 20);
-    var convexHull = new ConvexHull(windowSize);
-    convexHull.createRandomPoints(15);
-    convexHull.drawPoints(true);
-    convexHull.drawConvexHull(new QuickHull());
-});

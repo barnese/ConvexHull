@@ -15,3 +15,6 @@ Alternatively, run the provided Node.js server.
 ```node server.js```
 
 And then navigate to localhost at port 5858.
+
+To adjust the number of randomly generated points, which is defaulted to 10, use `?points=x` as a query string parameter in the URL,
+where `x` is the number of desired points. 
