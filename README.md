@@ -16,4 +16,4 @@ Alternatively, run the provided Node.js server.
 
 And then navigate to 
 
-```http://localhost:5858```
+```localhost:5858```
